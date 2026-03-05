@@ -1,0 +1,84 @@
+{
+  "name": "zephyr",
+  "version": "0.1.0",
+  "description": "A next‑generation web framework built in Zig, inspired by Phoenix Framework, with first‑class React/TypeScript and WebAssembly integration.",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:zig\" \"npm run dev:frontend\"",
+    "dev:zig": "cd packages/core && zig build run",
+    "dev:frontend": "cd examples/todo-app/frontend && npm run dev",
+    "build": "npm run build:zig && npm run build:js",
+    "build:zig": "cd packages/core && zig build -Doptimize=ReleaseSafe",
+    "build:js": "npm run build --workspaces --if-present",
+    "test": "npm run test:zig && npm run test:js",
+    "test:zig": "cd packages/core && zig build test",
+    "test:js": "jest --passWithNoTests",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "type-check": "tsc --noEmit --project tsconfig.json",
+    "clean": "rm -rf node_modules packages/*/node_modules examples/*/node_modules packages/*/dist packages/*/build",
+    "prepare": "husky install",
+    "release": "changeset publish"
+  },
+  "keywords": [
+    "zig",
+    "web-framework",
+    "phoenix",
+    "react",
+    "typescript",
+    "webassembly",
+    "wasm",
+    "edge",
+    "real-time"
+  ],
+  "author": "Zephyr Framework <hello@zephyrframework.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agumtech/zephyr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/agumtech/zephyr/issues"
+  },
+  "homepage": "https://zephyrframework.com",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+}
