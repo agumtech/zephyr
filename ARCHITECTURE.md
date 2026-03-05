@@ -17,18 +17,18 @@ Zephyr is a full‑stack web framework built in Zig that combines Phoenix‑insp
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                              Zephyr Application                              │
-├──────────────────┬──────────────────┬──────────────────┬───────────────────┤
+│                              Zephyr Application                             │
+├──────────────────┬──────────────────┬───────────────-───┬───────────────────┤
 │    Zig Core      │  WASM Runtime    │ React Integration │   Build System    │
 │   (Backend)      │   (Browser)      │    (Frontend)     │    & Tooling      │
-├──────────────────┼──────────────────┼──────────────────┼───────────────────┤
+├──────────────────┼──────────────────┼──────────────-────┼───────────────────┤
 │ • HTTP Server    │ • Zig→WASM       │ • Generated Hooks │ • Vite Plugin     │
 │ • Router         │   Compiler       │ • Type Bindings   │ • CLI             │
 │ • Pipelines      │ • WASM Loader    │ • Dev Server      │ • Code Generator  │
 │ • Channels       │ • Bridge         │ • Hot Reload      │ • Type Sync       │
 │ • Database       │                  │                   │                   │
 │ • Templates      │                  │                   │                   │
-└──────────────────┴──────────────────┴──────────────────┴───────────────────┘
+└──────────────────┴──────────────────┴─────────────-─────┴───────────────────┘
                             │                │                │
                             ▼                ▼                ▼
 ┌──────────────────┬──────────────────┬──────────────────┬───────────────────┐
